@@ -12,7 +12,7 @@ function FormGroup({ children, meta }) {
   }, [meta]);
 
   return (
-    <div>
+    <div className="w-full">
       {/* <label htmlFor={input.name}>Gif link</label> */}
       <div>{children}</div>
       {renderError()}

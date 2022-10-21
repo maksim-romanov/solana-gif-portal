@@ -17,11 +17,15 @@ function App() {
 
   return (
     <div className="min-h-screen p-4 md:p-12 flex flex-col">
-      <div className="fixed z-50 top-0 left-0 right-0">
-        <div className="bg-indigo-600 px-4 py-3 text-white">
-          <p className="text-center text-sm font-medium">Solana Devnet</p>
+      {/* <div className="fixed z-50 top-0 left-0 right-0 shadow-md">
+        <div>
+          <div className="bg-black px-4 py-3 text-white z-50">
+            <p className="text-center text-sm font-medium">Solana Devnet</p>
+          </div>
         </div>
-      </div>
+
+        <div className="absolute top-0 right-0 bottom-0 left-0 bg-red-500 z-0" />
+      </div> */}
       {/* <div className="fixed top-2 left-2 opacity-85 z-50 shadow-md rounded-full">
         <a
           href="#"
@@ -39,33 +43,32 @@ function App() {
         <div className="w-full max-w-screen-xl py-32 lg:flex lg:items-center flex justify-center">
           <div className="max-w-3xl text-center flex flex-col justify-center items-center space-y-12 w-full">
             <div className="flex flex-col justify-center items-center space-y-3">
-              <h1 className="text-5xl font-extrabold text-center">
-                <span className="text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-500 to-purple-600">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-center">
+                <span className="text-center text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-black  to-purple-600">
                   Solana Gif Portal
                 </span>
               </h1>
 
-              <p className="max-w-xl sm:text-xl sm:leading-relaxed">View your GIF collection in the metaverse ✨</p>
+              <p className="max-w-xl sm:text-xl sm:leading-relaxed">
+                View your GIF collection in{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black  to-purple-800">
+                  the metaverse
+                </span>{' '}
+                ✨
+              </p>
             </div>
 
-            <div className="w-full max-w-2xl flex flex-col space-y-8 sm:space-y-0 sm:flex-row justify-between items-center sm:items-stretch space-x-0 sm:space-x-3 group">
-              {/* <GifLinkForm onSubmit={onSubmit} /> */}
+            <div className="w-full max-w-2xl">
+              <GifLinkForm onSubmit={onSubmit} />
 
-              <input
+              {/* <input
                 type="text"
                 name="giflink"
                 id="giflink"
                 className="outline-0 bg-white border-2 border-black text-gray-900 sm:text-lg rounded-xl group-focus-within:ring-primary-600 group-focus-within:border-primary-600 block w-full p-2.5 pr-42 shadow-[6px_6px_0_0_#000] transition focus:shadow-none focus:border-slate-700 focus:ring ring-purple-500/50"
                 placeholder="Gif link here to metaverse here ..."
                 required=""
-              />
-
-              <button className="flex items-center justify-center rounded-xl border-2 border-black px-6 py-2 font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring ring-purple-500/50 active:bg-purple-200/50 max-w-xs">
-                Mint
-                <span aria-hidden="true" className="ml-1.5" role="img">
-                  🚀
-                </span>
-              </button>
+              /> */}
             </div>
           </div>
         </div>
