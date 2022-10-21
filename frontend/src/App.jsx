@@ -1,7 +1,9 @@
 import cl from 'classnames';
+import { useCallback, useEffect } from 'preact/hooks';
 
 import { GifLinkForm } from 'components';
 import { ImagePreview } from 'components/shared';
+import { usePhantomWallet } from 'hooks';
 
 const GIFS = [
   'https://media.giphy.com/media/APbckd2AUYS6RaqjQW/giphy.gif',
@@ -15,30 +17,31 @@ function App() {
     console.log('values', values);
   };
 
+  const [walletAddress, connectWallet] = usePhantomWallet();
+
+  const renderAppAction = useCallback(() => {
+    if (!walletAddress)
+      return (
+        <button
+          onClick={connectWallet}
+          className=" m-auto flex items-center justify-center rounded-xl border-2 border-black px-6 py-2 font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring ring-purple-500/50 active:bg-purple-200/50 max-w-xs"
+        >
+          Connect Wallet
+          <span aria-hidden="true" className="ml-1.5" role="img">
+            🔗
+          </span>
+        </button>
+      );
+
+    return (
+      <div className="w-full max-w-2xl">
+        <GifLinkForm onSubmit={onSubmit} />
+      </div>
+    );
+  }, [onSubmit, walletAddress, connectWallet]);
+
   return (
     <div className="min-h-screen p-4 md:p-12 flex flex-col">
-      {/* <div className="fixed z-50 top-0 left-0 right-0 shadow-md">
-        <div>
-          <div className="bg-black px-4 py-3 text-white z-50">
-            <p className="text-center text-sm font-medium">Solana Devnet</p>
-          </div>
-        </div>
-
-        <div className="absolute top-0 right-0 bottom-0 left-0 bg-red-500 z-0" />
-      </div> */}
-      {/* <div className="fixed top-2 left-2 opacity-85 z-50 shadow-md rounded-full">
-        <a
-          href="#"
-          className="text-xs inline-flex justify-between items-center px-1 pr-4 text-gray-700 bg-white rounded-full  hover:bg-gray-200"
-          role="alert"
-        >
-          <span className=" bg-black rounded-full text-white px-4 py-1 mr-3">
-            <span className="animate-pulse">Devnet</span>
-          </span>
-          <span className="font-medium">Phantom Wallet</span>
-        </a>
-      </div> */}
-
       <section className="text-black flex justify-center">
         <div className="w-full max-w-screen-xl py-32 lg:flex lg:items-center flex justify-center">
           <div className="max-w-3xl text-center flex flex-col justify-center items-center space-y-12 w-full">
@@ -58,33 +61,24 @@ function App() {
               </p>
             </div>
 
-            <div className="w-full max-w-2xl">
-              <GifLinkForm onSubmit={onSubmit} />
+            <div className="w-full">{renderAppAction()}</div>
+          </div>
+        </div>
+      </section>
 
-              {/* <input
-                type="text"
-                name="giflink"
-                id="giflink"
-                className="outline-0 bg-white border-2 border-black text-gray-900 sm:text-lg rounded-xl group-focus-within:ring-primary-600 group-focus-within:border-primary-600 block w-full p-2.5 pr-42 shadow-[6px_6px_0_0_#000] transition focus:shadow-none focus:border-slate-700 focus:ring ring-purple-500/50"
-                placeholder="Gif link here to metaverse here ..."
-                required=""
-              /> */}
+      {walletAddress && (
+        <section className="">
+          <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {GIFS.map((gifUrl, index) => (
+                <div key={index}>
+                  <ImagePreview item={{ url: gifUrl }} />
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="">
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {GIFS.map((gifUrl, index) => (
-              <div key={index}>
-                <ImagePreview item={{ url: gifUrl }} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }
