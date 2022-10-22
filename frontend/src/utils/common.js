@@ -43,3 +43,7 @@ export const getProgram = async () => {
 
   return new Program(idl, programID, provider);
 };
+
+export function checkIsImage(url) {
+  return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+}

@@ -3,11 +3,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import cl from 'classnames';
 import { Fragment } from 'preact';
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { GifLinkForm } from 'components';
 import { ImagePreview } from 'components/shared';
 import { usePhantomWallet } from 'hooks';
 import * as apiUtils from 'utils/api';
+import * as commonUtils from 'utils/common';
 
 function App() {
   const [gifList, setGifList] = useState([]);
@@ -66,6 +68,8 @@ function App() {
 
   const sendGif = useCallback(
     async (gifUrl) => {
+      if (!commonUtils.checkIsImage(gifUrl)) return toast.error("The link doesn't seem to work");
+
       try {
         setLoading(true);
         await apiUtils.sendGif(gifUrl);
@@ -221,6 +225,15 @@ function App() {
           </a>
         </div>
       </div>
+
+      <ToastContainer
+        position="top-center"
+        closeButton={() => null}
+        autoClose={2000}
+        hideProgressBar={true}
+        closeOnClick
+        theme="light"
+      />
     </Fragment>
   );
 }
