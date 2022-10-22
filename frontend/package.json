@@ -16,10 +16,13 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@project-serum/anchor": "^0.25.0",
     "@solana/web3.js": "^1.66.2",
+    "blurhash": "^2.0.3",
     "buffer": "^6.0.3",
     "classnames": "^2.3.2",
     "final-form": "^4.20.7",
+    "github-like-avatar-generator": "^1.1.10",
     "preact": "^10.10.6",
+    "react-blurhash": "^0.2.0",
     "react-final-form": "^6.5.9",
     "react-toastify": "^9.0.8"
   },

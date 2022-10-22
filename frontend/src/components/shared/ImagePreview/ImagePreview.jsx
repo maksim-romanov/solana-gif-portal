@@ -1,27 +1,24 @@
-// import cl from 'classnames';
-
-import { useCallback, useMemo, useState } from 'preact/hooks';
+import { useCallback, useMemo } from 'preact/hooks';
 
 import * as apiUtils from 'utils/api';
+import avatarGenerator from 'utils/avatar-generator';
 
 import Likes from './Likes';
 
 function ImagePreview({ item }) {
-  const [isLoading, setIsLoading] = useState(false);
-
   const userAddress = useMemo(() => item.userAddress.toString(), [item]);
   const votesCount = useMemo(() => item.votes.length, [item]);
 
   const voteGif = useCallback(async () => apiUtils.voteGif(item.gifLink), [item]);
 
+  const avatar = useMemo(() => avatarGenerator(userAddress), [userAddress]);
+
   return (
     <div className="h-full border-2 border-black rounded-xl p-2 py-0 flex flex-col z-10 bg-white shadow-[6px_6px_0_0_#000]">
       <div className="py-2 px-1 flex justify-between items-center">
-        <img
-          className="h-8 w-8 rounded-full border border-stone-200"
-          src="https://avatars.githubusercontent.com/t/6813046?s=280&v=4"
-        />
+        <img className="h-8 w-8 rounded-full border border-purple-800" src={avatar.base64} />
 
+        {/* {avatar.svgElement} */}
         <div className="truncate pl-8">
           <span>{userAddress}</span>
         </div>

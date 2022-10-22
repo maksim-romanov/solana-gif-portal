@@ -1,7 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import cl from 'classnames';
-import classNames from 'classnames';
 import { Fragment } from 'preact';
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
 
@@ -9,13 +8,6 @@ import { GifLinkForm } from 'components';
 import { ImagePreview } from 'components/shared';
 import { usePhantomWallet } from 'hooks';
 import * as apiUtils from 'utils/api';
-
-// const GIFS = [
-//   'https://media.giphy.com/media/APbckd2AUYS6RaqjQW/giphy.gif',
-//   'https://media.giphy.com/media/4T99irNz4VR3FNVsRb/giphy.gif',
-//   'https://media.giphy.com/media/3o6ozqdIjc0AG682xq/giphy.gif',
-//   'https://media.giphy.com/media/4Mfzt937wSvV6/giphy.gif',
-// ];
 
 function App() {
   const [gifList, setGifList] = useState([]);
@@ -107,12 +99,12 @@ function App() {
       return (
         <button
           onClick={handleConnectWallet}
-          className=" m-auto flex items-center justify-center rounded-xl border-2 border-black px-6 py-2 font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring ring-purple-500/50 active:bg-purple-200/50 max-w-xs"
+          className=" m-auto text-lg flex items-center justify-center rounded-xl border-2 border-black px-12 py-4 font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring ring-purple-500/50 active:bg-purple-200/50 max-w-xs"
         >
           Connect Wallet
-          {/* <span aria-hidden="true" className="ml-1.5" role="img">
+          <span aria-hidden="true" className="ml-1.5" role="img">
             🔗
-          </span> */}
+          </span>
         </button>
       );
     }
@@ -124,9 +116,6 @@ function App() {
           className=" m-auto flex items-center justify-center rounded-xl border-2 border-black px-6 py-2 font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring ring-purple-500/50 active:bg-purple-200/50 max-w-xs"
         >
           Create account
-          <span aria-hidden="true" className="ml-1.5" role="img">
-            🔗
-          </span>
         </button>
       );
     }
@@ -142,7 +131,7 @@ function App() {
     <Fragment>
       <div className="min-h-screen p-4 md:p-12 flex flex-col">
         {isLoading && (
-          <div className="fixed top-6 left-6 opacity-85 animate-in rounded-full fade-in shadow-xl flex justify-center items-center bg-white">
+          <div className="fixed top-3 left-6 opacity-85 animate-in rounded-full fade-in shadow-xl flex justify-center items-center bg-white">
             <svg
               className="animate-spin -ml-1 h-8 w-8 text-purple-900"
               xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +214,7 @@ function App() {
           <a
             href="https://explorer.solana.com/address/DByFcag9yDLwRGnBCT8bJpJPM7akth4dpHXosf7eaB7s?cluster=devnet"
             target="_blank"
-            className="inline-block text-sm cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-green-800 to-green-500 grayscale hover:grayscale-0 font-bold opacity-30 hover:opacity-100"
+            className="inline-block text-sm cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-green-800 to-green-500 font-bold opacity-60 hover:opacity-100"
             rel="noreferrer"
           >
             SOL Explorer
