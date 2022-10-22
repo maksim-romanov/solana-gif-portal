@@ -68,7 +68,10 @@ function App() {
 
   const sendGif = useCallback(
     async (gifUrl) => {
-      if (!commonUtils.checkIsImage(gifUrl)) return toast.error("The link doesn't seem to work");
+      if (!commonUtils.checkIsImage(gifUrl))
+        return toast.error("The link doesn't seem to work", {
+          icon: <span className="text-xl">🤔</span>,
+        });
 
       try {
         setLoading(true);
