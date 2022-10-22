@@ -15,3 +15,7 @@ body {
 #app {
   min-height: 100vh;
 }
+
+.Toastify__toast {
+  border-radius: 0.75rem !important;
+}
