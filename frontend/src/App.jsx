@@ -1,6 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import cl from 'classnames';
+import classNames from 'classnames';
 import { Fragment } from 'preact';
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
 
@@ -118,7 +119,7 @@ function App() {
     }
 
     return (
-      <div className={cl('w-full max-w-2xl m-auto', { 'opacity-50 animate-pulse cursor-not-allowed': isLoading })}>
+      <div className={cl('w-full max-w-2xl m-auto')}>
         <GifLinkForm onSubmit={onSubmit} />
       </div>
     );
@@ -145,7 +146,11 @@ function App() {
           </div>
         )}
 
-        <section className="text-black flex justify-center">
+        <section
+          className={cl('text-black flex justify-center transition-transform duration-700', {
+            'translate-y-20': !isAccountActive,
+          })}
+        >
           <div className="w-full max-w-screen-xl py-32 lg:flex lg:items-center flex justify-center">
             <div className="max-w-3xl text-center flex flex-col justify-center items-center space-y-12 w-full">
               <div className="flex flex-col justify-center items-center space-y-3">
@@ -164,7 +169,9 @@ function App() {
                 </p>
               </div>
 
-              <div className="w-full">{renderAppAction()}</div>
+              <div className={cl('w-full', { 'opacity-50 animate-pulse cursor-not-allowed': isLoading })}>
+                {renderAppAction()}
+              </div>
             </div>
           </div>
         </section>
@@ -182,6 +189,35 @@ function App() {
             </div>
           </section>
         )}
+
+        <div className="absolute top-3 right-6 space-x-5">
+          <a
+            href="https://github.com/maksim-romanov/solana-gif-portal"
+            target="_blank"
+            className="inline-block text-sm cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-purple-600 grayscale hover:grayscale-0 font-bold opacity-30 hover:opacity-100"
+            rel="noreferrer"
+          >
+            Github
+          </a>
+
+          <a
+            href="https://t.me/romanovmaksim"
+            target="_blank"
+            className="inline-block text-sm cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-blue-400 grayscale hover:grayscale-0 font-bold opacity-30 hover:opacity-100"
+            rel="noreferrer"
+          >
+            Telegram
+          </a>
+
+          <a
+            href="https://explorer.solana.com/address/DByFcag9yDLwRGnBCT8bJpJPM7akth4dpHXosf7eaB7s?cluster=devnet"
+            target="_blank"
+            className="inline-block text-sm cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-green-800 to-green-500 grayscale hover:grayscale-0 font-bold opacity-30 hover:opacity-100"
+            rel="noreferrer"
+          >
+            SOL Explorer
+          </a>
+        </div>
       </div>
     </Fragment>
   );

@@ -3,10 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
+  "homepage”": "https://maksim-romanov.github.io/solana-gif-portal/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@babel/core": "^7.19.3",
@@ -25,6 +28,7 @@
     "@preact/preset-vite": "^2.3.0",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.25.0",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "stylelint": "^14.14.0",
