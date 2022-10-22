@@ -87,7 +87,20 @@ function App() {
     [getGifList],
   );
 
-  const onSubmit = useCallback(async (values) => sendGif(values.gifLink), [sendGif]);
+  const onSubmit = useCallback(
+    async (values, { reset }) => {
+      await sendGif(values.gifLink);
+      reset();
+    },
+    [sendGif],
+  );
+
+  // const onSubmit = useCallback(
+  //   async (values, form) => {
+  //     form.reset();
+  //   },
+  //   [sendGif],
+  // );
 
   const renderAppAction = useCallback(() => {
     if (!walletAddress) {
