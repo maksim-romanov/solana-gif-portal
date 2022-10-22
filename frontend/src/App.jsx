@@ -29,11 +29,6 @@ function App() {
     try {
       setLoading(true);
       const gifListRes = await apiUtils.getGifList();
-      // const gifListRes = await toast.promise(apiUtils.getGifList, {
-      //   pending: 'Getting data ...',
-      //   success: 'Loaded from blockchain 👌',
-      //   error: 'Something went wrong 🤯',
-      // });
 
       if (!gifListRes) return;
 
@@ -49,11 +44,6 @@ function App() {
   }, []);
 
   const createGifAccountHandle = useCallback(async () => {
-    // await toast.promise(apiUtils.createGifAccount, {
-    //   pending: 'Creating account ...',
-    //   success: 'Account created 👌',
-    //   error: 'Something went wrong 🤯',
-    // });
     try {
       setLoading(true);
       await apiUtils.createGifAccount();
@@ -79,11 +69,6 @@ function App() {
     } finally {
       setLoading(false);
     }
-    // await toast.promise(connectWallet, {
-    //   pending: 'Connecting wallet',
-    //   success: 'Wallet connected 👌',
-    //   error: 'Wallet not connected 🤯',
-    // });
   }, [connectWallet]);
 
   const sendGif = useCallback(
