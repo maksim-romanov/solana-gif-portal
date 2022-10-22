@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.19.3
+  '@esbuild-plugins/node-globals-polyfill': ^0.1.1
   '@jetrockets/eslint-config-base': ^0.0.601
   '@jetrockets/eslint-config-react': ^0.0.23
   '@preact/preset-vite': ^2.3.0
@@ -20,6 +21,7 @@ specifiers:
   stylelint-config-standard: ^29.0.0
   stylelint-scss: ^4.3.0
   tailwindcss: ^3.2.0
+  tailwindcss-animate: ^1.0.5
   vite: ^3.1.0
   vite-aliases: ^0.9.7
 
@@ -34,6 +36,7 @@ dependencies:
   react-toastify: 9.0.8
 
 devDependencies:
+  '@esbuild-plugins/node-globals-polyfill': 0.1.1
   '@jetrockets/eslint-config-base': 0.0.601_eslint@8.25.0
   '@jetrockets/eslint-config-react': 0.0.23_eslint@8.25.0
   '@preact/preset-vite': 2.4.0_qkhbnxkfk2j6vlsuu5iqzsbpsq
@@ -45,6 +48,7 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.14.0
   stylelint-scss: 4.3.0_stylelint@14.14.0
   tailwindcss: 3.2.0_postcss@8.4.18
+  tailwindcss-animate: 1.0.5_tailwindcss@3.2.0
   vite: 3.1.8
   vite-aliases: 0.9.7
 
@@ -291,6 +295,12 @@ packages:
     dependencies:
       postcss: 8.4.18
       postcss-selector-parser: 6.0.10
+    dev: true
+
+  /@esbuild-plugins/node-globals-polyfill/0.1.1:
+    resolution: {integrity: sha512-MR0oAA+mlnJWrt1RQVQ+4VYuRJW/P2YmRTv1AsplObyvuBMnPHiizUF95HHYiSsMGLhyGtWufaq2XQg6+iurBg==}
+    peerDependencies:
+      esbuild: '*'
     dev: true
 
   /@esbuild/android-arm/0.15.12:
@@ -3216,6 +3226,14 @@ packages:
       slice-ansi: 4.0.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
+    dev: true
+
+  /tailwindcss-animate/1.0.5_tailwindcss@3.2.0:
+    resolution: {integrity: sha512-UU3qrOJ4lFQABY+MVADmBm+0KW3xZyhMdRvejwtXqYOL7YjHYxmuREFAZdmVG5LPe5E9CAst846SLC4j5I3dcw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.2.0_postcss@8.4.18
     dev: true
 
   /tailwindcss/3.2.0_postcss@8.4.18:

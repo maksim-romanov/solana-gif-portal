@@ -1,5 +1,6 @@
-import { SystemProgram } from "@solana/web3.js";
-import * as commonUtils from "./common";
+import { SystemProgram } from '@solana/web3.js';
+
+import * as commonUtils from './common';
 
 const baseAccount = commonUtils.getBaseAccount();
 
@@ -8,12 +9,9 @@ export const createGifAccount = async () => {
     const provider = commonUtils.getProvider();
     const program = await commonUtils.getProgram();
 
-    console.log("createGifAccount");
+    console.log('createGifAccount');
 
-    console.log(
-      "provider.wallet.publicKey",
-      provider.wallet.publicKey.toString()
-    );
+    console.log('provider.wallet.publicKey', provider.wallet.publicKey.toString());
 
     await program.methods
       .startStuffOff()
@@ -25,45 +23,30 @@ export const createGifAccount = async () => {
       .signers([baseAccount])
       .rpc();
 
-    console.log(
-      "Created a new BaseAccount w/ address:",
-      baseAccount.publicKey.toString()
-    );
+    console.log('Created a new BaseAccount w/ address:', baseAccount.publicKey.toString());
   } catch (error) {
-    console.log("123 error: ", error);
+    console.log('123 error: ', error);
   }
 };
 
 export const getGifList = async () => {
-  try {
-    console.log("Fetching GIF list...");
+  const program = await commonUtils.getProgram();
+  const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
 
-    const program = await commonUtils.getProgram();
-    const account = await program.account.baseAccount.fetch(
-      baseAccount.publicKey
-    );
+  const gifListRes = account.gifList;
 
-    console.log("Got the account", account);
+  if (!gifListRes) return [];
 
-    const gifListRes = account.gifList;
-
-    if (!gifListRes) return [];
-
-    return gifListRes;
-  } catch (error) {
-    console.log("error: ", error);
-
-    return null;
-  }
+  return gifListRes;
 };
 
 export const sendGif = async (gifUrl) => {
-  if (gifUrl.length <= 0) return console.log("Empty input. Try again.");
+  if (gifUrl.length <= 0) return console.log('Empty input. Try again.');
 
   const provider = commonUtils.getProvider();
   const program = await commonUtils.getProgram();
 
-  console.log("program", program);
+  console.log('program', program);
 
   await program.methods
     .addGif(gifUrl)
@@ -73,11 +56,11 @@ export const sendGif = async (gifUrl) => {
     })
     .rpc();
 
-  console.log("success added gif");
+  console.log('success added gif');
 };
 
 export const voteGif = async (gifUrl) => {
-  if (gifUrl.length <= 0) return console.log("Empty input. Try again.");
+  if (gifUrl.length <= 0) return console.log('Empty input. Try again.');
 
   const provider = commonUtils.getProvider();
   const program = await commonUtils.getProgram();
@@ -91,8 +74,8 @@ export const voteGif = async (gifUrl) => {
       })
       .rpc();
   } catch (error) {
-    console.log("error", error);
+    console.log('error', error);
   }
 
-  console.log("success voted gif");
+  console.log('success voted gif');
 };

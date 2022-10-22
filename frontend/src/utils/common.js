@@ -3,12 +3,7 @@ import * as constants from 'constants';
 import { AnchorProvider, Program, web3 } from '@project-serum/anchor';
 import { clusterApiUrl, Connection, PublicKey } from '@solana/web3.js';
 
-// import keypair from '../keypair.json';
-const keypair = {
-  _keypair: {
-    secretKey: '',
-  },
-};
+import KeyPair from './key-pair';
 
 const network = clusterApiUrl(constants.NETWORK);
 const opts = { preflightCommitment: 'processed' };
@@ -34,7 +29,7 @@ export const connectWallet = async () => {
 };
 
 export const getBaseAccount = () => {
-  const arr = Object.values(keypair._keypair.secretKey);
+  const arr = Object.values(KeyPair._keypair.secretKey);
   const secret = new Uint8Array(arr);
   const baseAccount = web3.Keypair.fromSecretKey(secret);
 
